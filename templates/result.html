@@ -1,0 +1,47 @@
+
+# index
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chest X-Ray Detection App</title>
+</head>
+<body>
+    <h1>Chest X-Ray Detection App</h1>
+    <p>Upload your X-ray here</p>
+
+    <!-- Display the uploaded image if available -->
+    {% if image %}
+    <img src="{{ image }}" alt="Uploaded Image" style="max-width: 300px;">
+    {% endif %}
+
+    <!-- Form to upload an image -->
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".jpg, .jpeg, .png"><br><br>
+        <button type="submit">Upload & Predict</button>
+    </form>
+
+    <!-- Display the prediction result if available -->
+    {% if label %}
+    <p><b>Prediction: {{ label }}</b></p>
+    {% endif %}
+</body>
+</html>
+
+
+
+# result
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Result</title>
+</head>
+<body>
+    <h1>Result</h1>
+    <p>Upload your X-ray</p>
+
+    <img src="{{ url_for('static', filename='uploaded_image.jpg') }}" alt="Uploaded Image">
+    <h2>Prediction: {{ label }}</h2>
+</body>
+</html>
+
+

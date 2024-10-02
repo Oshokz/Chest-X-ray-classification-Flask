@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Chest X-ray App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        p {
+            color: #6c757d;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+
+        .advice {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        /* Footer styles */
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 14px;
+            color: gray;
+        }
+
+        /* Date on the right side */
+        .date {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>AI-Powered Chest X-ray App</h1>
+        <p>{{ intro_text }}</p>
+        
+        <!-- Upload Image Form -->
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".jpg, .jpeg, .png" required><br><br>
+            <button type="submit" class="btn">Upload & Predict</button>
+        </form>
+
+        <!-- Show the uploaded image -->
+        {% if image %}
+        <h3>Uploaded Image</h3>
+        <img src="{{ url_for('static', filename='uploaded_image.jpg') }}" alt="Uploaded Chest X-ray Image">
+        {% endif %}
+
+        <!-- Show the prediction result -->
+        {% if label %}
+        <div class="advice">
+            <h2>Prediction: {{ label }}</h2>
+            <h3>Advice:</h3>
+            <ul>
+                {% for item in advice %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Date on the right side -->
+    <div class="date">
+        October 2024
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        © 2024 AI Chest X-ray App
+    </div>
+
+</body>
+</html>
